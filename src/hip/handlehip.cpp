@@ -406,6 +406,7 @@ void Handle::ReadTo(void* data, ConstData_t ddata, std::size_t sz) const
 {
     MIOPEN_HANDLE_LOCK
     this->Finish();
+    MIOPEN_LOG_E("hipMemcpyDeviceToHost : Copying to Host! size: " << sz);
     auto status = hipMemcpy(data, ddata, sz, hipMemcpyDeviceToHost);
     if(status != hipSuccess)
         MIOPEN_THROW_HIP_STATUS(status, "Hip error reading from buffer: ");

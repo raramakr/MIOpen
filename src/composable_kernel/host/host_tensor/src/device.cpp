@@ -15,6 +15,7 @@ void DeviceMem::ToDevice(const void* p)
 
 void DeviceMem::FromDevice(void* p)
 {
+    MIOPEN_LOG_E("hipMemcpyDeviceToHost : Copying to Host! size: " << sz);
     hipGetErrorString(hipMemcpy(p, mpDeviceBuf, mMemSize, hipMemcpyDeviceToHost));
 }
 
